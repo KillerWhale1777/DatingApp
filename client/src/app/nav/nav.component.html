@@ -17,11 +17,14 @@
           <a class="nav-link" (click)="logout()">Logout</a>
         </li>
       </ng-container>
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/errors' routerLinkActive="active">Error</a>
+      </li>
     </ul>
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-       Welcome {{user.username | titlecase}}
+        Welcome {{user.username | titlecase}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item">Edit Profile</a>
