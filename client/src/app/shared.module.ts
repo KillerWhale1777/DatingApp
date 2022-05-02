@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 
 @NgModule({
@@ -10,10 +11,14 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
-    })
+    }),
+    TabsModule.forRoot(),
+    NgxGalleryModule 
   ],
   exports:[
-    ToastrModule
+    ToastrModule,
+    TabsModule,
+    NgxGalleryModule 
   ]
 })
 export class SharedModule { }
