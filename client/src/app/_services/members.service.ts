@@ -29,10 +29,16 @@ export class MembersService {
   }
   updateMember(member: Member) {
     return this.http.put(this.baseUrl + 'users', member).pipe(
-      map(() => { 
-        const index= this.member.indexOf(member);
+      map(() => {
+        const index = this.member.indexOf(member);
         this.member[index] = member;
       })
     )
+  }
+  setMainPhoto(photoId:number) {
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId ,{});
+  }
+  deletePhoto(photoId:number) {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
 }
