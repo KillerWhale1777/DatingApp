@@ -22,7 +22,7 @@
       </li>
     </ul>
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
-      <img src="{{user.photoUrl}}" alt="{{user.photoUrl}}">
+      <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.photoUrl}}">
       <button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         Welcome {{user.username | titlecase}}
