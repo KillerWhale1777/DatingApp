@@ -25,7 +25,7 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
-        //To Write Get Controller
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
         {
@@ -41,7 +41,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        //To Write Get Controller By Id
+
 
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
