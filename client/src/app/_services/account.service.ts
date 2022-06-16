@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { PresenceService } from './presence.service';
 
 @Injectable({
   //MetaData useful to inject this service in any component.
@@ -14,7 +15,7 @@ export class AccountService {
   //To Hide Show
   currentUser$ = this.currentUserSource.asObservable();
   //To inject HttpClient in the constructor.
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private presence: PresenceService) {
 
   }
   //This model contains the data like username and password.
@@ -25,6 +26,7 @@ export class AccountService {
         const user = response;
         if (user) {
           this.setCurrentUser(user);
+          this.presence.createHubConnection(user);
         }
       })
     )
@@ -34,6 +36,7 @@ export class AccountService {
       map((user: User) => {
         if (user) {
           this.setCurrentUser(user);
+          this.presence.createHubConnection(user);
         }
       })
     )
@@ -50,6 +53,7 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+    this.presence.stopHubConnection();
   }
   getDecodedToken(token) {
     return JSON.parse(atob(token.split('.')[1]));

@@ -1,13 +1,13 @@
 <div class="row mb-4">
     <div class="btn-group" name="container" style="width:28%;">
-        <button class="btn btn-primary" btnRadio="Unread" [(ngModel)]="container" (click)="loadMessages()"
+        <button class="btn btn-primary" btnRadio='Unread' [(ngModel)]="container" (click)="loadMessages()"
             style="width:10%;">
             <i class="fa fa-envelope"></i>&nbsp;Unread
         </button>
-        <button class="btn btn-primary" btnRadio="Inbox" [(ngModel)]="container" (click)="loadMessages()">
+        <button class="btn btn-primary" btnRadio='Inbox' [(ngModel)]="container" (click)="loadMessages()">
             <i class="fa fa-envelope-open"></i>&nbsp;Inbox
         </button>
-        <button class="btn btn-primary" btnRadio="Outbox" [(ngModel)]="container" (click)="loadMessages()">
+        <button class="btn btn-primary" btnRadio='Outbox' [(ngModel)]="container" (click)="loadMessages()">
             <i class="fa fa-paper-plane"></i>&nbsp;Outbox
         </button>
     </div>
@@ -29,21 +29,23 @@
         : "/members/" + message.senderUsername}}' [queryParams]='{tab:3}'>
             <td>{{message.content}}</td>
             <td>
-                <div *ngIf="container ==='Outbox'">
+                <div *ngIf="container === 'Outbox'">
                     <img class="img-circle rounded-circle mr-2"
-                        src="{{message.recipientPhotoUrl || './assets.user.png'}}" alt="{{message.recipientUsername}}">
+                        src="{{message.recipientPhotoUrl || './assets/user.png'}}"
+                         alt="{{message.recipientUsername}}">
                     <strong>{{message.recipientUsername | titlecase}}</strong>
                 </div>
-                <div *ngIf="container !=='Outbox'">
-                    <img class="img-circle rounded-circle mr-2" src="{{message.senderPhotoUrl || './assets.user.png'}}"
+                <div *ngIf="container !== 'Outbox'">
+                    <img class="img-circle rounded-circle mr-2" 
+                        src="{{message.senderPhotoUrl || './assets/user.png'}}"
                         alt="{{message.senderUsername}}">
                     <strong>{{message.senderUsername | titlecase}}</strong>
                 </div>
             </td>
             <td>{{message.messageSent | timeago}}</td>
             <td>
-                <button class='btn btn-danger' style="background-color:red"
-                  (click)="$event.stopPropagation()"  (click)="deleteMessages(message.id)">Delete</button>
+                <button class='btn btn-danger' style="background-color:red" (click)="$event.stopPropagation()"
+                    (click)="deleteMessages(message.id)">Delete</button>
             </td>
         </tr>
     </table>
